@@ -30,15 +30,15 @@
                 This is because bilinear sampling takes the weighted average of nearby neighboring pixels and chooses intermediate color values that transition between one color to another nicely. 
                 Nearest sampling, on the other hand, simply picks the color of the closest pixel, so it will result in more noticeable jagged edges.
             </p>
-            <img src="writeup_img/task5_nearest1.png">
-            <img src="writeup_img/task5_bilinear1.png">
+            <img src="writeup_img/task5_nearest1.png" width="75%">
+            <img src="writeup_img/task5_bilinear1.png" width="75%">
             <h4>Sample Rate: 16 per pixel</h4>
             <p>
                 At a higher sample rate, nearest sampling produces smoother edges. This is the result of supersampling as explained in task 2. 
                 However, its difference from bilinear sampling is still very apparent; bilinear sampling takes account into the distance between pixels and use the proportional distance to determine more accurate intermediate color values.
             </p>
-            <img src="writeup_img/task5_nearest16.png">
-            <img src="writeup_img/task5_bilinear16.png">
+            <img src="writeup_img/task5_nearest16.png" width="75%">
+            <img src="writeup_img/task5_bilinear16.png" width="75%">
         <h2>Task 6</h2>
             <p>
                 Level sampling sample data at different levels of detail. For textures that are closer to the camera, higher levels of detail are used (ie. bigger mipmap). 
@@ -54,22 +54,22 @@
             </p>
             <p>
                 Supersampling is the slowest technique because it not only require multiple samples per pixel, but also at a higher resolution than the final output. 
-                Thus, it uses less memory than level sampling but more than pixel sampling. 
-                Supersampling generally provides the most antialiasing power because it uses the highest resolution.
+                Thus, it also uses the most memory. However, supersampling generally provides the most antialiasing power because it uses the highest resolution.
                 Pixel sampling is the fastest technique and uses the least amount of memory. However, it provides the least antialiasing power.
-                Level sampling is the most cost-effective. Although it uses more memory than supersampling because it needs to store mipmaps of different levels, 
-                it is more efficient by using lower resolution for faraway objects and higher resolution of closer ones that require more details. 
+                Level sampling is the most cost-effective. It uses more memory than pixel sampling because it needs to store mipmaps of different levels, 
+                but less than supersampling because the mipmaps are lower resolutions.
+                It is more efficient by using lower resolution for faraway objects and higher resolution of closer ones that require more details. 
                 It is generally a happy medium between pixel sampling and supersampling in providing antialiasing. 
             </p>
             <h4>Level Zero Sampling</h4>
             With level zero sampling and switching pixel sampling methods, the images clearly show that bilinear sampling provides better antialiasing.
-            <img src="writeup_img/task6_zero_nearest.png">
-            <img src="writeup_img/task6_zero_bilinear.png">
+            <img src="writeup_img/task6_zero_nearest.png" width="75%">
+            <img src="writeup_img/task6_zero_bilinear.png" width="75%">
 
             <h4>Nearest Sampling</h4>
             The L_NEAREST and P_LINEAR combination produced the smoothest image. 
-            L_NEAREST blurs the image more and shows less texture details in the pixel inspector because the object selected is farther away. 
-            <img src="writeup_img/task6_nearest_nearest.png">
-            <img src="writeup_img/task6_nearest_bilinear.png">
+            L_NEAREST blurs the image more and shows less texture details in the pixel inspector because the selected object is farther away. 
+            <img src="writeup_img/task6_nearest_nearest.png" width="75%">
+            <img src="writeup_img/task6_nearest_bilinear.png" width="75%">
     </body>
 </html>
