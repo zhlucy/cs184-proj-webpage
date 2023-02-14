@@ -6,7 +6,26 @@
     <body>
         <h1>CS 184 Project 1 Write-Up</h1>
         <h2>Task 1</h2>
+            <p>
+                The first thing we determined when creating our triangles was the winding order of the triangle. In order to determine this, we created a helper function called inside, which determined whether
+                a point was inside a triangle by checking to see if that point was above all three lines of the triangle, which was determined using the function shown in lecture. To actually determine the winding order,
+                we tested to see if the centroid of the triangle, which is guaranteed to be inside any triangle, was inside the triangle in one winding order. If the centroid was inside, this meant that our winding order was correct;
+                if the centroid was outside, then we simply used the other winding order. Using the winding order, we created our three lines to get our triangle. To rasterize the triangle, we would find the minimum and maximum x and y coordinates
+                that the triangle was bounded in and we iterated over these x and y coordinates (which included the minimum and maximum values for x and y) and checked to see if each (x + 0.5, y + 0.5) coordinate was inside the triangle. 
+                If it was, this meant we would color in (x,y); otherwise, we wouldn't. 
+            </p>
+            <p>
+                Our rasterization algorithm is no worse than one that checks each sample within the bounding box of the triangle, as our algorithm uses this method. We find the minimum and maximum x and y coordinates that the triangle
+                can be in, and we iterate over those x and y coordinates.
+            </p>
         <h2>Task 2</h2>
+            <p>
+                Our approach for supersampling was to scale our sample_buffer according to the sample_rate (which was like rasterizing the image at a "higher resolution"). We would then sample at an offset that was different than 0.5, as we had to 
+                account for sampling rate since we want the middle of the smaller squares during supersampling. We then checked to see if a point was inside the triangle and then convert indices to sample_buffer coordinates to color it. Other than those modifications,
+                our supersampling algorithm was exactly the same as the one described in Task 1. Supersampling renders the image at a higher resolution and then downsampling it to the desired resolution; it is useful because it helps reduce aliasing and jaggies, which 
+                makes our image look more smoother and visually pleasing. We used supersampling to antialias our triangles because we sampled at a higher resolution before downsampling, which got rid of the jaggies that we saw in Task 1.
+                
+            </p>
         <h2>Task 3</h2>
         <h2>Task 4</h2>
         <h2>Task 5</h2>
