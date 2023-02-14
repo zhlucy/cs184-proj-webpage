@@ -5,29 +5,66 @@
     </head>
     <body>
         <h1>CS 184 Project 1 Write-Up</h1>
+        <h2>Overview</h2>
+            <p>
+                This project implements a rasterizer that renders images using triangles with antialiasing techniques, 
+                such as supersampling, pixel sampling, and level sampling.
+            </p>
         <h2>Task 1</h2>
             <p>
-                The first thing we determined when creating our triangles was the winding order of the triangle. In order to determine this, we created a helper function called inside, which determined whether
-                a point was inside a triangle by checking to see if that point was above all three lines of the triangle, which was determined using the function shown in lecture. To actually determine the winding order,
-                we tested to see if the centroid of the triangle, which is guaranteed to be inside any triangle, was inside the triangle in one winding order. If the centroid was inside, this meant that our winding order was correct;
-                if the centroid was outside, then we simply used the other winding order. Using the winding order, we created our three lines to get our triangle. To rasterize the triangle, we would find the minimum and maximum x and y coordinates
-                that the triangle was bounded in and we iterated over these x and y coordinates (which included the minimum and maximum values for x and y) and checked to see if each (x + 0.5, y + 0.5) coordinate was inside the triangle. 
-                If it was, this meant we would color in (x,y); otherwise, we wouldn't. 
+                We created a helper function called inside: we used the line formula shown in lecture to check if the point was above all three lines of the triangle, 
+                and if it is, then the point is within the triangle. 
+                Then to determine the winding order, we used the inside function on the centroid, which is guaranteed to be inside the triangle. 
+                If the centroid was inside using counterclock wise winding order, then the winding order was correct;
+                if the centroid was outside, then we simply used the other winding order. 
+                Using the winding order, we created our three lines/vectors of the triangle. 
+                To rasterize the triangle, we find the minimum and maximum x and y coordinates of the triangle verticles to create a bounding box.
+                We iterated over coordinates within the bounding box and checked if each (x + 0.5, y + 0.5) coordinate was inside the triangle. 
+                If it was, we would color in (x,y); otherwise, we wouldn't. 
             </p>
             <p>
                 Our rasterization algorithm is no worse than one that checks each sample within the bounding box of the triangle, as our algorithm uses this method. We find the minimum and maximum x and y coordinates that the triangle
                 can be in, and we iterate over those x and y coordinates.
             </p>
+            <img src="writeup_img/task1.png" width="75%">
         <h2>Task 2</h2>
             <p>
-                Our approach for supersampling was to scale our sample_buffer according to the sample_rate (which was like rasterizing the image at a "higher resolution"). We would then sample at an offset that was different than 0.5, as we had to 
-                account for sampling rate since we want the middle of the smaller squares during supersampling. We then checked to see if a point was inside the triangle and then convert indices to sample_buffer coordinates to color it. Other than those modifications,
-                our supersampling algorithm was exactly the same as the one described in Task 1. Supersampling renders the image at a higher resolution and then downsampling it to the desired resolution; it is useful because it helps reduce aliasing and jaggies, which 
-                makes our image look more smoother and visually pleasing. We used supersampling to antialias our triangles because we sampled at a higher resolution before downsampling, which got rid of the jaggies that we saw in Task 1.
-                
+                Our approach for supersampling was to split each pixel into smaller squares based on the sampling rate. 
+                Therefore, to store the color values of these smaller squares, we need to scale our sample_buffer according to the sample_rate (which was like rasterizing the image at a "higher resolution"). 
+                And instead of offsetting with 0.5, we need to account for sampling rate so that we use the middle of the smaller squares during inside-triangle check. 
+                Same as task 1, we check if the offsetted point was inside the triangle. Instead of simply coloring in (x, y), we stored the sampled values into sample_buffer. 
+                Finally, in resolve_to_framebuffer, we take the average of the squares within a pixel and color the corresponding pixel with the resulting value. 
+                Supersampling renders the image at a higher resolution and then downsampling it to the desired resolution; it is useful because it helps reduce aliasing and jaggies, which 
+                makes our image look more smoother and visually pleasing.  
+            </p>
+            <img src="writeup_img/task2_1_purple.png" width="75%">
+            <img src="writeup_img/task2_4_purple.png" width="75%">
+            <img src="writeup_img/task2_16_purple.png" width="75%">
+            <p>
+                When our sampling rate is 1, we see that the corner of the triangle has jaggies, each pixel is either purple or white with no in-between.
+                When our sampling rate is 4, we see that there are still some jaggies, but each pixel can now be in-between purple and white.
+                When our sampling rate is 16, we can see that each pixel has more freedom to be in-between the purple and white colors.
+                These results are observed because when we increase our sampling rate, we are sampling smaller squares within a pixel, and we take the average value of those squares within a picture to get our final color.
+                When we increase our sampling rate, we are able to represent a higher variety of colors because we have more squares.
             </p>
         <h2>Task 3</h2>
+            <p>
+                In order to create this running robot, we performed a sequence of rotations followed by translations. The transformations happen in a stack-like fashion that we saw in lecture. The first thing we did was draw the torso and the head; these body parts
+                required no additional transformations than what we had in the original robot. For the left and right legs, we rotate the left and right lower legs before translating those parts; the upper left left only needed to be translated to the appropriate location,
+                whereas the upper right leg required a rotation and a translation. Both the left and right forearms also required a rotation followed by a translation, whereas the upper arms only required a transformation. After all this was done, we applied a final rotation
+                and translation to the entire robot.
+            </p>
+            <img src="writeup_img/my_robot.png" width="75%">
         <h2>Task 4</h2>
+            <p> 
+                Barycentric coordinates are used to represent a point relative to three vertices of the triangle. The position of the point is essentially a weighted average of the vertices based on its distance from them. In the triangle below, the each vertex is plotted with a different color.
+                The top left vertex is colored red, the top right vertex is colored green, and the bottom vertex is colored blue. If we pick a vertex and move away from that vertex and closer to the center, we see that the color of the triangle changes, and appears to be a weighted average of all
+                three colors. For example, when we start from the blue vertex and move closely along the edge that connects the blue vertex to the red vertex, we can see that in the midpoint, we have a purplish shade, which is a mixture of the red and blue. As another example, when we move from the
+                blue vertex to the middle, we can see that the blue shade fades away eventually and the color starts to blend in with the green and red.
+            </p>
+            <img src="writeup_img/my_triangle.png" width="75%">
+
+            <img src="writeup_img/task_7.png" width="75%">
         <h2>Task 5</h2>
             <p>
                 Pixel sampling uses original image data to determine pixel color value. There are two pixel sampling methods: nearest sampling and bilinear sampling. 
