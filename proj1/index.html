@@ -32,7 +32,7 @@
                 Our approach for supersampling was to split each pixel into smaller squares based on the sampling rate. 
                 Therefore, to store the color values of these smaller squares, we need to scale our sample_buffer according to the sample_rate (which was like rasterizing the image at a "higher resolution"). 
                 And instead of offsetting with 0.5, we need to account for sampling rate so that we use the middle of the smaller squares during inside-triangle check. 
-                Same as task 1, we check if the offsetted point was inside the triangle. Instead of simply coloring in (x, y), we stored the sampled values into sample_buffer. 
+                Similar to task 1, we check if the offsetted point was inside the triangle. Instead of simply coloring in (x, y), we stored the sampled values into sample_buffer. 
                 Finally, in resolve_to_framebuffer, we take the average of the squares within a pixel and color the corresponding pixel with the resulting value. 
                 Supersampling renders the image at a higher resolution and then downsampling it to the desired resolution; it is useful because it helps reduce aliasing and jaggies, which 
                 makes our image look more smoother and visually pleasing.  
@@ -74,12 +74,12 @@
             </p>
             <p>
                 In our implementation of pixel sampling, we create a bounding box and perform supersampling just like previous tasks. 
-                Then, we find the corresponding barycentric coordinates of the pixel using the formula given in lecture. 
-                Scale the coordinates relative to the mipmap width and height. Depending on which pixel sampling is being used, the remaining algorithm differs. 
+                Then, we find the corresponding barycentric coordinates of the pixel using the formula given in lecture and 
+                scale the coordinates relative to the mipmap width and height. Depending on which pixel sampling is being used, the remaining algorithm differs. 
                 For nearest sampling, we round the scaled coordinates to find the nearest pixel and retrieve its color. 
                 For bilinear sampling, we find the 4 neighboring pixels by taking the floor and ceil of the coordinates. 
-                Do two horizontal linear interpolations using these 4 pixels as shown in the lecture. 
-                Then use these results to do a final vertical linear interpolation to retrieve the weighted color value. 
+                Then, do two horizontal linear interpolations using these 4 pixels as shown in the lecture, 
+                and use these results to do a final vertical linear interpolation to retrieve the weighted color value. 
             </p>
             <h4>Sample Rate: 1 per pixel</h4>
             <p>
@@ -109,15 +109,21 @@
                 For linear sampling, we also calculate mipmap level, but we take the floor of the resulting value to get the lower level.
                 Then add one to it to get the higher mipmap level. Perform pixel sampling using each level and do linear interpolation with the results to get the weighted average. 
             </p>
+            <h4>Supersampling</h4>
+                As sampling rate increases, sampling will take longer and use more memory but also provide better antialiasing. This is because we would need to do more samples per pixel, which require more computation. 
+                With more samples within the pixel, this also means the determined intermediate color value is more accurate based on the color differences in the original image.  
+            <h4>Pixel Sampling</h4>
             <p>
-                Supersampling is the slowest technique because it not only require multiple samples per pixel, but also at a higher resolution than the final output. 
-                Thus, it also uses the most memory. However, supersampling generally provides the most antialiasing power because it uses the highest resolution.
-                Pixel sampling is the fastest technique and uses the least amount of memory. However, it provides the least antialiasing power.
-                Level sampling is the most cost-effective. It uses more memory than pixel sampling because it needs to store mipmaps of different levels, 
-                but less than supersampling because the mipmaps are lower resolutions.
-                It is more efficient by using lower resolution for faraway objects and higher resolution of closer ones that require more details. 
-                It is generally a happy medium between pixel sampling and supersampling in providing antialiasing. 
+                Nearest sampling is the simplest, fastest, and least memory intensive. Since it simply takes the color of the nearest pixel, it provides less antialiasing power compared to bilinear sampling. 
+                Bilinear is slower and uses more memory because it requires more computation by sampling nearby pixels. But it has stronger antialiasing power since we take the weighted average of the neighbors.
             </p>
+            <h4>Level Sampling</h4>
+            <p>
+                Level zero sampling is the simplest and fastest form of texture sampling. It uses the least memory because we only store one mipmap for the highest resolution. It does not provide any antialiasing power. 
+                Nearest sampling is faster than linear level sampling, but slower than level zero sampling. It uses more memory than level zero sampling because it needs to store mipmaps of different levels. It also provides basic antialiasing. 
+                Linear level sampling is the slowest of the three. It requires more processing time and memory than the other two methods, but it provides better antialiasing compared to nearest and level zero sampling.
+            </p>
+            
             <h4>Level Zero Sampling</h4>
             With level zero sampling and switching pixel sampling methods, the images clearly show that bilinear sampling provides better antialiasing.
             <img src="writeup_img/task6_zero_nearest.png" width="75%">
