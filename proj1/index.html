@@ -7,8 +7,8 @@
         <h1>CS 184 Project 1 Write-Up</h1>
         <h2>Overview</h2>
             <p>
-                This project implements a rasterizer that renders images using triangles with antialiasing techniques, 
-                such as supersampling, pixel sampling, and level sampling.
+                This project implements a rasterizer that renders images using triangles with antialiasing techniques 
+                (such as supersampling, pixel sampling, and level sampling) and the ability to transform.
             </p>
         <h2>Task 1</h2>
             <p>
@@ -37,9 +37,7 @@
                 Supersampling renders the image at a higher resolution and then downsampling it to the desired resolution; it is useful because it helps reduce aliasing and jaggies, which 
                 makes our image look more smoother and visually pleasing.  
             </p>
-            <img src="writeup_img/task2_1_purple.png" width="75%">
-            <img src="writeup_img/task2_4_purple.png" width="75%">
-            <img src="writeup_img/task2_16_purple.png" width="75%">
+            <h4>Sample Rate Comparison</h4>
             <p>
                 When our sampling rate is 1, we see that the corner of the triangle has jaggies, each pixel is either purple or white with no in-between.
                 When our sampling rate is 4, we see that there are still some jaggies, but each pixel can now be in-between purple and white.
@@ -47,17 +45,20 @@
                 These results are observed because when we increase our sampling rate, we are sampling smaller squares within a pixel, and we take the average value of those squares within a picture to get our final color.
                 When we increase our sampling rate, we are able to represent a higher variety of colors because we have more squares.
             </p>
+            <img src="writeup_img/task2_1_purple.png" width="75%">
+            <img src="writeup_img/task2_4_purple.png" width="75%">
+            <img src="writeup_img/task2_16_purple.png" width="75%">
         <h2>Task 3</h2>
             <p>
-                In order to create this running robot, we performed a sequence of rotations followed by translations. The transformations happen in a stack-like fashion that we saw in lecture. The first thing we did was draw the torso and the head; these body parts
+                In order to create this running robot, we performed a sequence of rotations followed by translations. The transformations happen in a stack-like fashion that we saw in lecture. We draw the torso and the head; these body parts
                 required no additional transformations than what we had in the original robot. For the left and right legs, we rotate the left and right lower legs before translating those parts; the upper left left only needed to be translated to the appropriate location,
                 whereas the upper right leg required a rotation and a translation. Both the left and right forearms also required a rotation followed by a translation, whereas the upper arms only required a transformation. After all this was done, we applied a final rotation
-                and translation to the entire robot.
+                and translation to the entire robot. When executing, the body parts lower in the hierarchy (such as arms and legs) complete their transformation first before the head and torso.
             </p>
             <img src="writeup_img/my_robot.png" width="75%">
         <h2>Task 4</h2>
             <p> 
-                Barycentric coordinates are used to represent a point relative to three vertices of the triangle. The position of the point is essentially a weighted average of the vertices based on its distance from them. In the triangle below, the each vertex is plotted with a different color.
+                Barycentric coordinates are used to represent a point relative to three vertices of the triangle. The position of the point is essentially a weighted average of the vertices based on its distance from them. In the triangle below, each vertex is plotted with a different color.
                 The top left vertex is colored red, the top right vertex is colored green, and the bottom vertex is colored blue. If we pick a vertex and move away from that vertex and closer to the center, we see that the color of the triangle changes, and appears to be a weighted average of all
                 three colors. For example, when we start from the blue vertex and move closely along the edge that connects the blue vertex to the red vertex, we can see that in the midpoint, we have a purplish shade, which is a mixture of the red and blue. As another example, when we move from the
                 blue vertex to the middle, we can see that the blue shade fades away eventually and the color starts to blend in with the green and red.
@@ -128,4 +129,5 @@
             <img src="writeup_img/task6_nearest_nearest.png" width="75%">
             <img src="writeup_img/task6_nearest_bilinear.png" width="75%">
     </body>
+    <!-- Writeup Link: https://zhlucy.github.io/cs184-proj-webpage/ -->
 </html>
