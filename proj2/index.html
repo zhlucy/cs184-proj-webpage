@@ -9,9 +9,9 @@
 			<p>
 				Given a Bezier curve defined by a set of control points and parameter value, de Casteljau recursively computes intermediate points by doing linear interpolation between adjacent points. For instance, we first interpolate between adjacent control points, then between newly computed intermediate points, so on so forth. When there is only one point, that means we have reached the desired level of accuracy and the algorithm is completed. For this part of the project, we only had to implement the recursive step: we used a for loop to perform linear interpolation between adjacent points and add the calculated point to the list. Once we finish the loop, we return the list of intermediate points.
 			</p>
-			<h4>Bezier curve with 6 control points.</h4>
+			<h5>Bezier curve with 6 control points.</h5>
 			<img src="writeup_img/task1_original.png" width="75%">
-			<h4>Moved control points lower and spread out. Made t smaller.</h4>
+			<h5>Moved control points lower and spread out. Made t smaller.</h5>
 			<img src="writeup_img/task1_moved.png" width="75%">
 		<h2>Task 2</h2>
 			<p>
@@ -23,21 +23,21 @@
 			<p>
 				Then we implemented evaluate for Beizer surfaces. For each row/set of control points, we call evaluate1D with u as the parameter and store the results in a list. Lastly, we use that list as the control points and call evaluate1D with v as the parameter. 
 			</p>
-			<img src="writeup_img/task3_original.png" width="75%">
-			<p>
-				Original Teapot
-			</p>
-			<img src="writeup_img/task3_phong_shading.png" width="75%">
-			<p>
-				Phong Shading Teapot
-			</p>
+			<img src="writeup_img/task2_teapot.png" width="75%">
 		<h2>Task 3</h2>
 			<p>
 				For this task, we initialized a sum vertex with all 0s as its components and then iterated through all the neighboring triangles. Within each iteration, we calculated the area of the triangle using this equation: 0.5 * cross(vertex_0 - vertex_1, vertex_0 - vertex_2).norm(). Taking the cross product of the vertices (vertex_0 - vertex_1) and (vertex_0 - vertex_2) gives us another vertex (taking a cross product of any two vertices gives another vertex for that matter). In order to get the actual area, we had to take the norm of this vector and multiplied by 0.5.
 				After finding the area, we found the normal vector by taking the cross product of (vertex_0 - vertex_1) and (vertex_1 - vertex_2). Taking the cross product of two vectors A and B gives us a vector that is perpedicular to both A and B, so we were able to get the normal vector this way. Furthermore, the orientation of the normal vector matters; we want the normal vector to point away from the surface rather than pointing in to the surface. Afterwards, we weighted the normal by the area by multiplying the area to the vector, and added the resulting vector to our sum.
 				After iterating through all the neighboring triangles, we normalized the sum vector to get an approximate unit normal vector at the vertex in question. 
 			</p>
-			<img src="writeup_img/task2_teapot.png" width="75%">
+			<img src="writeup_img/task3_original.png" width="75%">
+			<p>
+				Original teapot
+			</p>
+			<img src="writeup_img/task3_phong_shading.png" width="75%">
+			<p>
+				Phong Shading teapot
+			</p>
 		<h2>Task 4</h2>
 			<p>
 				To implement Task 4, I drew out a diagram of the mesh before and after edge flip, and labeled the half edges, edges, vertices, and faces. The half edges and faces within the mesh were essentially rotated 90 degrees clockwise with the edge in the middle. 
@@ -46,9 +46,9 @@
 			<p>
 				Since there were many tedious assignments of variables, I first created variables for each mesh element and gave them names according to my diagram. Then for each half edge, I set its next, twin, vertex, edge, and face pointers using setNeighbors. For each mesh element, I assign the appropriate half edge after edge flip. I essentially followed the diagram while assigning each pointer.
 			</p>
-			<h4>Before edge flips.</h4>
+			<h5>Before edge flips.</h5>
 			<img src="writeup_img/task4_original.png" width="75%">
-			<h4>After flipping middle diagonal edges.</h4>
+			<h5>After flipping middle diagonal edges.</h5>
 			<img src="writeup_img/task4_flipped.png" width="75%">
 			<p>
 				I initially thought of just flipping the edge in the middle instead of rotating everything. However, that resulted in an infinite loop. I tried adding breakpoints in xcode to examine what went wrong/what caused it, but that was largely unsuccessful since it does execute to the end of the function. I did learn how to evaluate expressions though in the debugger. I saw the post in the megathread and changed my approach and completed this tak. Then I realized my initial attempt did not work because I did not change all of the next pointers that were affected. 
@@ -61,19 +61,19 @@
 			<p>
 				I created the new vertex and mesh elements that will be used later. Then I assign the position of the new vertex to be the average of the vertice positions of e0. The process of assigning pointers is the same as Task 4; I followed my diagram for each step: set neighbors for half edges and then assign the half edges to the mesh elements.
 			</p>
-			<h4>Before edge splits.</h4>
+			<h5>Before edge splits.</h5>
 			<img src="writeup_img/task5_original.png" width="75%">
-			<h4>After splitting middle diagonal edges.</h4>
+			<h5>After splitting middle diagonal edges.</h5>
 			<img src="writeup_img/task5_splitted.png" width="75%">
-			<h4>Before edge flips/splits.</h4>
+			<h5>Before edge flips/splits.</h5>
 			<img src="writeup_img/task5_comb_original.png" width="75%">
-			<h4>After splitting selected edge.</h4>
+			<h5>After splitting selected edge.</h5>
 			<img src="writeup_img/task5_split1.png" width="75%">
-			<h4>After splitting selected edge.</h4>
+			<h5>After splitting selected edge.</h5>
 			<img src="writeup_img/task5_split2.png" width="75%">
-			<h4>After flipping selected edge.</h4>
+			<h5>After flipping selected edge.</h5>
 			<img src="writeup_img/task5_flip3.png" width="75%">
-			<h4>After splitting selected edge.</h4>
+			<h5>After splitting selected edge.</h5>
 			<img src="writeup_img/task5_split4.png" width="75%">
 			<p>
 				When I split an edge, one of the outer edges disappeared. I did not “debug” per se using the debugger/by printing. However, I knew it must be related to the code where I use the edges. I went through each line of my code and compared it with my diagram, which I found that I forgot to set the new edge for one of half edges (the twin of the half edge within the mesh). 
