@@ -23,8 +23,21 @@
 			<p>
 				Then we implemented evaluate for Beizer surfaces. For each row/set of control points, we call evaluate1D with u as the parameter and store the results in a list. Lastly, we use that list as the control points and call evaluate1D with v as the parameter. 
 			</p>
-			<img src="writeup_img/task2_teapot.png" width="75%">
+			<img src="writeup_img/task3_original.png" width="75%">
+			<p>
+				Original Teapot
+			</p>
+			<img src="writeup_img/task3_phong_shading.png" width="75%">
+			<p>
+				Phong Shading Teapot
+			</p>
 		<h2>Task 3</h2>
+			<p>
+				For this task, we initialized a sum vertex with all 0s as its components and then iterated through all the neighboring triangles. Within each iteration, we calculated the area of the triangle using this equation: 0.5 * cross(vertex_0 - vertex_1, vertex_0 - vertex_2).norm(). Taking the cross product of the vertices (vertex_0 - vertex_1) and (vertex_0 - vertex_2) gives us another vertex (taking a cross product of any two vertices gives another vertex for that matter). In order to get the actual area, we had to take the norm of this vector and multiplied by 0.5.
+				After finding the area, we found the normal vector by taking the cross product of (vertex_0 - vertex_1) and (vertex_1 - vertex_2). Taking the cross product of two vectors A and B gives us a vector that is perpedicular to both A and B, so we were able to get the normal vector this way. Furthermore, the orientation of the normal vector matters; we want the normal vector to point away from the surface rather than pointing in to the surface. Afterwards, we weighted the normal by the area by multiplying the area to the vector, and added the resulting vector to our sum.
+				After iterating through all the neighboring triangles, we normalized the sum vector to get an approximate unit normal vector at the vertex in question. 
+			</p>
+			<img src="writeup_img/task2_teapot.png" width="75%">
 		<h2>Task 4</h2>
 			<p>
 				To implement Task 4, I drew out a diagram of the mesh before and after edge flip, and labeled the half edges, edges, vertices, and faces. The half edges and faces within the mesh were essentially rotated 90 degrees clockwise with the edge in the middle. 
