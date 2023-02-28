@@ -9,9 +9,9 @@
 			<p>
 				Given a Bezier curve defined by a set of control points and parameter value, de Casteljau recursively computes intermediate points by doing linear interpolation between adjacent points. For instance, we first interpolate between adjacent control points, then between newly computed intermediate points, so on so forth. When there is only one point, that means we have reached the desired level of accuracy and the algorithm is completed. For this part of the project, we only had to implement the recursive step: we used a for loop to perform linear interpolation between adjacent points and add the calculated point to the list. Once we finish the loop, we return the list of intermediate points.
 			</p>
-			<h5>Bezier curve with 6 control points.</h5>
+			<h4>Bezier curve with 6 control points.</h4>
 			<img src="writeup_img/task1_original.png" width="75%">
-			<h5>Moved control points lower and spread out. Made t smaller.</h5>
+			<h4>Moved control points lower and spread out. Made t smaller.</h4>
 			<img src="writeup_img/task1_moved.png" width="75%">
 		<h2>Task 2</h2>
 			<p>
@@ -46,9 +46,9 @@
 			<p>
 				Since there were many tedious assignments of variables, I first created variables for each mesh element and gave them names according to my diagram. Then for each half edge, I set its next, twin, vertex, edge, and face pointers using setNeighbors. For each mesh element, I assign the appropriate half edge after edge flip. I essentially followed the diagram while assigning each pointer.
 			</p>
-			<h5>Before edge flips.</h5>
+			<h4>Before edge flips.</h4>
 			<img src="writeup_img/task4_original.png" width="75%">
-			<h5>After flipping middle diagonal edges.</h5>
+			<h4>After flipping middle diagonal edges.</h4>
 			<img src="writeup_img/task4_flipped.png" width="75%">
 			<p>
 				I initially thought of just flipping the edge in the middle instead of rotating everything. However, that resulted in an infinite loop. I tried adding breakpoints in xcode to examine what went wrong/what caused it, but that was largely unsuccessful since it does execute to the end of the function. I did learn how to evaluate expressions though in the debugger. I saw the post in the megathread and changed my approach and completed this tak. Then I realized my initial attempt did not work because I did not change all of the next pointers that were affected. 
@@ -61,19 +61,19 @@
 			<p>
 				I created the new vertex and mesh elements that will be used later. Then I assign the position of the new vertex to be the average of the vertice positions of e0. The process of assigning pointers is the same as Task 4; I followed my diagram for each step: set neighbors for half edges and then assign the half edges to the mesh elements.
 			</p>
-			<h5>Before edge splits.</h5>
+			<h4>Before edge splits.</h4>
 			<img src="writeup_img/task5_original.png" width="75%">
-			<h5>After splitting middle diagonal edges.</h5>
+			<h4>After splitting middle diagonal edges.</h4>
 			<img src="writeup_img/task5_splitted.png" width="75%">
-			<h5>Before edge flips/splits.</h5>
+			<h4>Before edge flips/splits.</h4>
 			<img src="writeup_img/task5_comb_original.png" width="75%">
-			<h5>After splitting selected edge.</h5>
+			<h4>After splitting selected edge.</h4>
 			<img src="writeup_img/task5_split1.png" width="75%">
-			<h5>After splitting selected edge.</h5>
+			<h4>After splitting selected edge.</h4>
 			<img src="writeup_img/task5_split2.png" width="75%">
-			<h5>After flipping selected edge.</h5>
+			<h4>After flipping selected edge.</h4>
 			<img src="writeup_img/task5_flip3.png" width="75%">
-			<h5>After splitting selected edge.</h5>
+			<h4>After splitting selected edge.</h4>
 			<img src="writeup_img/task5_split4.png" width="75%">
 			<p>
 				When I split an edge, one of the outer edges disappeared. I did not “debug” per se using the debugger/by printing. However, I knew it must be related to the code where I use the edges. I went through each line of my code and compared it with my diagram, which I found that I forgot to set the new edge for one of half edges (the twin of the half edge within the mesh). 
