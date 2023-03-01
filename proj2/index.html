@@ -85,6 +85,9 @@
 				Next was the actual splitting of the edge. If the two vertices that connects an edge were part of the original figure, we split the edge and set the newPosition of the Vertex that split returns to the value we stored in the edge from the previous step.
 				Afterwards, we flipped any edges that connected an old vertex to a new vertex.
 				Finally, we iterated through all the vertices (both new and old) and set the position of these vertices to the newPosition.
+
+				For this task, we created our own neighborPosSum in order to 
+				Furthermore, we initially had an infinite loop. In order to debug this, we used print statements to see where the infinite was, as the print statement would not run when 
 			</p>
 			
 			<img src="writeup_img/cube_original.png" width="75%">
@@ -108,11 +111,6 @@
 				Figure C Zoomed
 			</p>
 
-			<p>
-				In figure A, we can see the original shape of the cube. In Figures B, B Zoomed, C, and C Zoomed, the cube has been upsampled and we can see that the sharp corners are pretty prominenet.
-
-
-			</p>
 
 			<img src="writeup_img/smoother_cube_1.png" width="75%">
 			<p>
@@ -124,7 +122,8 @@
 			</p>
 
 			<p>
-				In Figures D and E, this is the result that we get when we perform some pre-splitting. 
+				In figure A, we can see the original shape of the cube. In Figures B, B Zoomed, C, and C Zoomed, the cube has been upsampled and we can see that the sharp corners are pretty prominenet.
+				This effect can be mitigated when we pre-split the edges. Figures D and E are a result of a cube that was pre-split and then upsampled.
 				After performing pre-splitting, we can see that the effects of the sharp corners are mitigated.
 			</p>
 
