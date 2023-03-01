@@ -83,7 +83,7 @@
 				For task 6, we first iterate through all the original vertices and calculate the newPosition for all the original vertices using the formula that was described in the spec while also setting isNew to false.
 				We then iterated through all the original edges and set the isNew for these edges to false and calculated the position of the new vertex that splits the edge and store this value in newPosition.
 				Next was the actual splitting of the edge. If the two vertices that connects an edge were part of the original figure, we split the edge and set the newPosition of the Vertex that split returns to the value we stored in the edge from the previous step.
-				Afterwards, we flipped any edges that connected an old vertex to a new vertex.
+				Afterwards, we flipped any new edges that connected an old vertex to a new vertex.
 				Finally, we iterated through all the vertices (both new and old) and set the position of these vertices to the newPosition.
 
 				<br>
