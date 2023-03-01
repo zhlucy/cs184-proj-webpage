@@ -6,8 +6,8 @@
 		<h1>CS 184 Project 2 Write-Up</h1>
         <h2>Overview</h2>
 			<p>
-				In this project, we implemented geometric modeling and found ways to implement curves and surfaces. In the project, we implemented Bezier Curves, de Casteljau surfaces, area-weighted vertex normals, 
-				edge flips and edge splits, and loop subdivision for mesh upsampling.
+				In this project, we implemented geometric modeling and found ways to implement curves and surfaces. In the project, we implemented Bezier Curves, de Casteljau surfaces, area-weighted vertex normals which were used for Phong shading, 
+				edge flips and edge splits for meshes, and loop subdivision for mesh upsampling.
 		<h2>Task 1</h2>
 			<p>
 				Given a Bezier curve defined by a set of control points and parameter value, de Casteljau recursively computes intermediate points by doing linear interpolation between adjacent points. For instance, we first interpolate between adjacent control points, then between newly computed intermediate points, so on so forth. When there is only one point, that means we have reached the desired level of accuracy and the algorithm is completed. For this part of the project, we only had to implement the recursive step: we used a for loop to perform linear interpolation between adjacent points and add the calculated point to the list. Once we finish the loop, we return the list of intermediate points.
