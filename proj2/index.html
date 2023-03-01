@@ -79,6 +79,61 @@
 				When I split an edge, one of the outer edges disappeared. I did not “debug” per se using the debugger/by printing. However, I knew it must be related to the code where I use the edges. I went through each line of my code and compared it with my diagram, which I found that I forgot to set the new edge for one of half edges (the twin of the half edge within the mesh). 
 			</p>
 		<h2>Task 6</h2>
+			<p>
+				For task 6, we first iterate through all the original vertices and calculate the newPosition for all the original vertices using the formula that was described in the spec while also setting isNew to false.
+				We then iterated through all the original edges and set the isNew for these edges to false and calculated the position of the new vertex that splits the edge and store this value in newPosition.
+				Next was the actual splitting of the edge. If the two vertices that connects an edge were part of the original figure, we split the edge and set the newPosition of the Vertex that split returns to the value we stored in the edge from the previous step.
+				Afterwards, we flipped any edges that connected an old vertex to a new vertex.
+				Finally, we iterated through all the vertices (both new and old) and set the position of these vertices to the newPosition.
+			</p>
+			
+			<img src="writeup_img/cube_original.png" width="75%">
+			<p>
+				Figure A
+			</p>
+			<img src="writeup_img/cube_sharp_1.png" width="75%">
+			<p>
+				Figure B
+			</p>
+			<img src="writeup_img/cube_sharp_1_zoomed.png" width="75%">
+			<p>
+				Figure B Zoomed
+			</p>
+			<img src="writeup_img/cube_sharp_2.png" width="75%">
+			<p>
+				Figure C
+			</p>
+			<img src="writeup_img/cube_sharp_2_zoomed.png" width="75%">
+			<p>
+				Figure C Zoomed
+			</p>
+
+			<p>
+				In figure A, we can see the original shape of the cube. In Figures B, B Zoomed, C, and C Zoomed, the cube has been upsampled and we can see that the sharp corners are pretty prominenet.
+
+
+			</p>
+
+			<img src="writeup_img/smoother_cube_1.png" width="75%">
+			<p>
+				Figure D
+			</p>
+			<img src="writeup_img/smoother_cube_2.png" width="75%">
+			<p>
+				Figure E
+			</p>
+
+			<p>
+				In Figures D and E, this is the result that we get when we perform some pre-splitting. 
+				After performing pre-splitting, we can see that the effects of the sharp corners are mitigated.
+			</p>
+
+			<p>
+				In Figures D and E, we can also see that the cube is a lot more symmetric (we did pre-splitting in Figures D and E).
+				Before, our cube was asymmetric because each face on the cube only had one diagonal. 
+				Having only one diagonal makes the resulting cube when we upsample uneven because the face isn't divided symmetrically.
+				However, when we split the diagonol to now have two diagonols across the face, our face is divided symmetrically. Therefore, our upsampled figures becomes symmetric as well.
+			</p>
 
 		Link: https://zhlucy.github.io/cs184-proj-webpage/proj2/index.html
 	</body>
