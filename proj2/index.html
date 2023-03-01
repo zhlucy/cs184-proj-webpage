@@ -5,6 +5,9 @@
 	<body>
 		<h1>CS 184 Project 2 Write-Up</h1>
         <h2>Overview</h2>
+			<p>
+				In this project, we implemented geometric modeling and found ways to implement curves and surfaces. In the project, we implemented Bezier Curves, de Casteljau surfaces, area-weighted vertex normals, 
+				edge flips and edge splits, and loop subdivision for mesh upsampling.
 		<h2>Task 1</h2>
 			<p>
 				Given a Bezier curve defined by a set of control points and parameter value, de Casteljau recursively computes intermediate points by doing linear interpolation between adjacent points. For instance, we first interpolate between adjacent control points, then between newly computed intermediate points, so on so forth. When there is only one point, that means we have reached the desired level of accuracy and the algorithm is completed. For this part of the project, we only had to implement the recursive step: we used a for loop to perform linear interpolation between adjacent points and add the calculated point to the list. Once we finish the loop, we return the list of intermediate points.
@@ -127,7 +130,7 @@
 			<p>
 				In figure A, we can see the original shape of the cube. In Figures B, B Zoomed, C, and C Zoomed, the cube has been upsampled and we can see that the sharp corners are pretty prominenet.
 				This effect can be mitigated when we pre-split the edges. Figures D and E are a result of a cube that was pre-split and then upsampled.
-				After performing pre-splitting, we can see that the effects of the sharp corners are mitigated.
+				After performing pre-splitting, we can see that the effects of the sharp corners are mitigated - the sharp corners that we see from figures B and C have been smoothened out.
 			</p>
 
 			<p>
