@@ -12,9 +12,13 @@
 			In camera space, we generated our ray, and then we used the cw matrix to transform the ray from camera space back to world space, and then we normalized 
 			the ray and set its min_t and max_t values.
 
+			<br>
+
 			To generate the pixel samples, we generated ns_aa random rays by using randomly generated (x,y) coordinates, created normalized vectors, and then 
 			used the generate_ray to generate our ray. After generating the ray, we called est_radiance_global_illumination to estimate the scene radiance along that ray and then 
 			updated the sampleBuffer accordingly.
+
+			<br>
 
 			In order to test for intersection, we used the Moller-Trumbore algorithm by creating the vectors and performing dot products and cross products as described from lecture.
 			The Moller-Trumbore algorithm finds the barycentric coordinates of the ray if it intersects the triangle. 
