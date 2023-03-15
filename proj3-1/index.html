@@ -63,8 +63,16 @@
 				From here we will recurse. We will call construct_bvh and pass in the start and end iterators using the left vector and assign the returned Node to <code>node->l</code>. We will do the same for the right vector and assign the returned Node to <code> node->r </code>.
 			</p>
 
+			<img src="writeup_img/part2_cow.png" width="75%">
 			<img src="writeup_img/part2_maxplanck.png" width="75%">
 			<img src="writeup_img/part2_cblucy.png" width="75%">
+			
+
+			<p>
+				As mentioned in the spec, the ray intersection complexity runs in O(N) time. By adding the BVH acceleration, the complexity drops to O(logN) time.
+				We rendered the Cow, Max Planck, and CBlucy without the BH acceleration in 18.0905s, 173.4054s, and 531.0499s, respectively. With the BVH acceleration, 
+				we were able to render the Cow, Max Planck, and CBlucy in 0.0596s, 0.0721s, and 0.0623s, respectively. 
+			</p>
 		</p>
 
 		<h2>Part 3</h2>
