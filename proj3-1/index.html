@@ -5,7 +5,40 @@
 	<body>
 		<h1>CS 184 Project 2 Write-Up</h1>
         <h2>Overview</h2>
-			
+		<h2>Part 1</h2>
+		<p>
+			To generate the ray, we took the (x,y) coordinates that were passed in the world space, and transformed it into the camera space by 
+			generating a 3x3 matrix, vecotorizing our input, and multiplying the matrix by the vector.
+			In camera space, we generated our ray, and then we used the cw matrix to transform the ray from camera space back to world space, and then we normalized 
+			the ray and set its min_t and max_t values.
+
+			<br>
+			<br>
+
+			To generate the pixel samples, we generated ns_aa random rays by using randomly generated (x,y) coordinates, created normalized vectors, and then 
+			used the generate_ray to generate our ray. After generating the ray, we called est_radiance_global_illumination to estimate the scene radiance along that ray and then 
+			updated the sampleBuffer accordingly.
+
+			<br>
+			<br>
+
+			In order to test for intersection, we used the Moller-Trumbore algorithm by creating the vectors and performing dot products and cross products as described from lecture.
+			The Moller-Trumbore algorithm finds the barycentric coordinates of the ray if it intersects the triangle. 
+			In order to check if the ray hit the triangle, we checked to see if the b1, b2, and (1 - b1 - b2) coordinates were all greater than or equal to 0.
+			We then checked to see if the ray hit the triangle within the min_t and max_t bounds by checking to see if t was within these bounds.
+			If either the first or second check failed, we simply returned false.
+			Otherwise, we updated the ray's max_t value, and then updated the Intersection attributes and returned true.
+		</p>
+		<p>
+			<img src="writeup_img/part1_bench.png" width="75%">
+		</p>
+		<p>
+			<img src="writeup_img/part1_blob.png" width="75%">
+		</p>
+		<p>
+			<img src="writeup_img/part1_empty.png" width="75%">
+		</p>
+
 		<h2>Part 3</h2>
 
 			<h3>Uniform Hemisphere Sampling</h3>
