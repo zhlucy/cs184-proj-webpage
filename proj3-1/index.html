@@ -13,11 +13,13 @@
 			the ray and set its min_t and max_t values.
 
 			<br>
+			<br>
 
 			To generate the pixel samples, we generated ns_aa random rays by using randomly generated (x,y) coordinates, created normalized vectors, and then 
 			used the generate_ray to generate our ray. After generating the ray, we called est_radiance_global_illumination to estimate the scene radiance along that ray and then 
 			updated the sampleBuffer accordingly.
 
+			<br>
 			<br>
 
 			In order to test for intersection, we used the Moller-Trumbore algorithm by creating the vectors and performing dot products and cross products as described from lecture.
@@ -26,6 +28,15 @@
 			We then checked to see if the ray hit the triangle within the min_t and max_t bounds by checking to see if t was within these bounds.
 			If either the first or second check failed, we simply returned false.
 			Otherwise, we updated the ray's max_t value, and then updated the Intersection attributes and returned true.
+		</p>
+		<p>
+			<img src="writeup_img/part1_bench.png" width="75%">
+		</p>
+		<p>
+			<img src="writeup_img/part1_blob.png" width="75%">
+		</p>
+		<p>
+			<img src="writeup_img/part1_empty.png" width="75%">
 		</p>
 
 		<h2>Part 3</h2>
