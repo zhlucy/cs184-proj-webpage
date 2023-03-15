@@ -120,7 +120,7 @@
 
 			<p> This image is rendered with global illumination and 1024 samples per pixel.</p>
 			<img src="writeup_img/part4_global.png" width="75%">
-			<p> This image is rendered with direct illumination and 1024 samples per pixel. As shown, we only have the illumination caused by the ceiling light. The ceiling is dark and there no reflected lights were accounted for.</p>
+			<p> This image is rendered with direct illumination and 1024 samples per pixel. As shown, we only have the illumination caused by the ceiling light. The ceiling is dark and no reflected lights were accounted for.</p>
 			<img src="writeup_img/part4_direct.png" width="75%">
 			<p> This image is rendered with indirect illumination and 1024 samples per pixel. We do not have the illumination directly caused by the ceiling light. Instead, we can see the lights being reflected off the walls. The spheres show the colors of the walls since lights were reflected onto them.</p>
 			<img src="writeup_img/part4_indirect.png" width="75%">
@@ -136,7 +136,7 @@
 			<img src="writeup_img/part4_bunny_3.png" width="75%">
 			<p> This image is rendered with max_ray_depth set as 100.</p>
 			<img src="writeup_img/part4_bunny_100.png" width="75%">
-			<p>As the images above shown, we can see the indirect lighting being included in the image as max_ray_depth increases. There's no significant differences with max_ray_depth = 2, 3, 100. TODO: WHY</p>
+			<p>As the images above shown, we can see the indirect lighting being included in the image as max_ray_depth increases. There's no significant differences with max_ray_depth = 2, 3, 100 because Russian Roulette could terminate before 100 bounces and this is a pretty simple scene, so good results with few bounces are expected.</p>
 
 			<h3>Sample Per Pixel</h3>
 			<p> This image is rendered with 1 sample per pixel.</p>
@@ -153,7 +153,7 @@
 			<img src="writeup_img/part4_64.png" width="75%">
 			<p> This image is rendered with 1024 samples per pixel.</p>
 			<img src="writeup_img/part4_1024.png" width="75%">
-			<p>As the number of samples increases, the image becomes significantly less noisy. With more samples, we can render more realistic image with more accurate lighting.</p>
+			<p>As the number of samples increases, the image becomes significantly less noisy/blurry. With more samples, we can render more realistic image with more accurate lighting.</p>
 
 		Link: https://zhlucy.github.io/cs184-proj-webpage/proj3/index.html
 	</body>
