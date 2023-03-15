@@ -39,6 +39,31 @@
 			<img src="writeup_img/part1_empty.png" width="75%">
 		</p>
 
+		<h2> Part 2 </h2>
+		<p>
+			To construct the BVH, we first iterate from the start iterator to the end iterator and we count the number of primitives in our iterator as well as add up the centroid of each bbox.
+			After we iterate through the iterator, we initialize a new Node object and we set start and end to the start and end vectors that were passed into the function.
+			At this point, there are two cases:
+
+			<h3> Case 1: The number of primitives is less than or equal to max_leaf_size </h3>
+			<p>
+				If we hit this case, it means that we have created a leaf node, and we can just return the Node, since we've properly set up the start and end iterators.
+			</p>
+
+			<h3> Case 2: The number of primitives is greater than max_leaf_size </h3>
+			<p>
+				In this case, we need to recurse.
+				We first find a split point by taking the centroids of all the primitives that we added up previously and dividing it by the number of primitives.
+				Afterwards, we found the largest extent of the bounding box for all three axes (x,y, and z).
+				Since the node we created isn't a leaf node, we will initialize two new vectors: a left vector and the right vector.
+				From here, we iterate through all the Primitives again, and for each Primitive, we will first check to see which axis has the highest extent.
+				Then, we will get the centroid of the Primitive and get the coordinate for whichever axis has the highest extend (for example, if the x axis had the highest extent, we will choose the x coordinate of the centroid of the Primitive).
+				If the coordinate is less than the coordinate of the split point, we will add this Primitive to the left vector; otherwise, we add it to the right vector.
+				At the end of the iteration, we should've put all Primitives that have a coordinate less than the split point in the left vector and all the Primitives that have a coordinate more than the split point in the right vector.
+				From here we will recurse. We will call construct_bvh and pass in the start and end iterators using the left vector and assign the returned Node to <code>node->l</code>. We will do the same for the right vector and assign the returned Node to <code> node->r </code>.
+			</p>
+		</p>
+
 		<h2>Part 3</h2>
 
 			<h3>Uniform Hemisphere Sampling</h3>
