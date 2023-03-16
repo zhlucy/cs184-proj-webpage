@@ -185,19 +185,18 @@
 			<p>
 				In this part, we implemented adaptive sampling. After implementing Monte Carlo path tracing, our images look a lot more realistic.
 				However, one of the problems we run into is that the images have a lot of noise.
-				In order to mitigate these issues, we implemented adaptive sampline. In adaptive sampling, we check to see if the pixel has converged within some confidence interval; if it has converged, then we 
+				In order to mitigate these issues, we implemented adaptive sampling. In adaptive sampling, we check to see if the pixel has converged within some confidence interval; if it has converged, then we 
 				don't need to sample the pixel anymore.
 				<br>
 				These are the following steps we took to implement adaptive sampling:
 				<br>
 				1: We check to see if I &lt= maxTolerance * mean where I = 1.96 * std / (square root of n) 
-				where mean is the mean of the n samples that we've collected so far and the std is the standard deviation of the n samples we've collected so far.
-				The maxTolerance is a parameter that we pass in, but it is typically set to 0.05.
-				If I &gt maxTolerance * mean and sample_count &lt num_samples, we will continue on with the following loop:
+				where mean and std are the mean and standard deviation of the illuminance from the n samples we've collected so far.
+				While I &gt maxTolerance * mean, we check whether a pixel has converged every samplesPerBatch pixels (instead of every sample) until reaching ns_aa samples using the following loop:
 				<br>
 				2: We will initialize i to 0 and run the inner loop if i &lt samplesPerBatch and sample_count &lt num_samples (where sample_count is initialied to 0 outside the inner loop and num_samples = ns_aa), incrementing i by one after each iteration.
 				<br>
-				3: We will generate a random sample, normalize the vector, and generate a ray based on this sample. We will then estimate the scene radiance along the ray using the est_radiance_global_illumination function. 
+				3: Similar to Part 1, We will generate a random sample, normalize the vector, and generate a ray based on this sample and estimate the scene radiance along the ray using the est_radiance_global_illumination function. 
 				<br>
 				4: Afterwards, we find the illuminance of the radiance, and we will update s1 and s0 (which were both initialized to 0 outside the outer loop) using the formula on the spec:
 				<br>
@@ -214,6 +213,10 @@
 				std = square root of (1 / (n-1) * (s2 - s1 ^ 2/n))
 				<br>
 				I = 1.96 * std / square root(sample_count)
+
+				<br>
+				<br>
+				Lastly, we take the sum of radiance calculated in the loop and normalize it by sample_count before updating the sampleBuffer. 
 			</p>
 			<img src="writeup_img/part5_banana.png" width="75%">
 			<img src="writeup_img/part5_banana_heatmap.png" width="75%">
