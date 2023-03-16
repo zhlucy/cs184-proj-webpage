@@ -7,15 +7,24 @@
         <h2>Overview</h2>
 		<h2>Part 1</h2>
 		<p>
+			TODO: 
+			(x, y) passed in is image coordinates.
+			Write out the matrix; it is translate then scale.
+			Set z = -1
+			We used cw and pos to change coordinate system. pos is camera position in world space (this part is translation). 
+		
 			To generate the ray, we took the (x,y) coordinates that were passed in the world space, and transformed it into the camera space by 
 			generating a 3x3 matrix, vecotorizing our input, and multiplying the matrix by the vector.
 			In camera space, we generated our ray, and then we used the cw matrix to transform the ray from camera space back to world space, and then we normalized 
-			the ray and set its min_t and max_t values.
+			the ray and set its min_t and max_t values to nClip and fClip respectively.
 
 			<br>
 			<br>
 
-			To generate the pixel samples, we generated ns_aa random rays by using randomly generated (x,y) coordinates, created normalized vectors, and then 
+			TODO: Can you be more descriptive for everything? For example, how we normalized the vectors?
+			You need to take the sum of radiance and then normalize it at the end before updating sampleBuffer.
+			
+			To generate the pixel samples, we generated `num_samples` random rays by using randomly generated (x,y) coordinates, created normalized vectors, and then 
 			used the generate_ray to generate our ray. After generating the ray, we called est_radiance_global_illumination to estimate the scene radiance along that ray and then 
 			updated the sampleBuffer accordingly.
 
@@ -25,7 +34,7 @@
 			In order to test for intersection, we used the Moller-Trumbore algorithm by creating the vectors and performing dot products and cross products as described from lecture.
 			The Moller-Trumbore algorithm finds the barycentric coordinates of the ray if it intersects the triangle. 
 			In order to check if the ray hit the triangle, we checked to see if the b1, b2, and (1 - b1 - b2) coordinates were all greater than or equal to 0.
-			We then checked to see if the ray hit the triangle within the min_t and max_t bounds by checking to see if t was within these bounds.
+			We then checked if the ray hit the triangle within the min_t and max_t bounds.
 			If either the first or second check failed, we simply returned false.
 			Otherwise, we updated the ray's max_t value, and then updated the Intersection attributes and returned true.
 		</p>
@@ -52,12 +61,12 @@
 
 			<h3> Case 2: The number of primitives is greater than max_leaf_size </h3>
 			<p>
+				TODO: the special case that you fixed.
 				In this case, we need to recurse.
-				We first find a split point by taking the centroids of all the primitives that we added up previously and dividing it by the number of primitives.
-				Afterwards, we found the largest extent of the bounding box for all three axes (x,y, and z).
+				We first find a split point by taking the centroids of all the primitives that we added up previously and dividing it by the number of primitives to get the average.
+				Afterwards, we found the largest extent of the bounding box for all three axes (x,y, and z), which we will use to compare with coordinates of primitives later.
 				Since the node we created isn't a leaf node, we will initialize two new vectors: a left vector and the right vector.
-				From here, we iterate through all the Primitives again, and for each Primitive, we will first check to see which axis has the highest extent.
-				Then, we will get the centroid of the Primitive and get the coordinate for whichever axis has the highest extend (for example, if the x axis had the highest extent, we will choose the x coordinate of the centroid of the Primitive).
+				From here, we iterate through all the Primitives again, and for each Primitive, we will get the centroid of the Primitive and get the coordinate for whichever axis has the highest extend (for example, if the x axis had the highest extent, we will choose the x coordinate of the centroid of the Primitive).
 				If the coordinate is less than the coordinate of the split point, we will add this Primitive to the left vector; otherwise, we add it to the right vector.
 				At the end of the iteration, we should've put all Primitives that have a coordinate less than the split point in the left vector and all the Primitives that have a coordinate more than the split point in the right vector.
 				Within this case, we also addressed the edge case where all Primitives end up in one vector. In this case, we will use the middle of the vector and everything to the left will be the left vector and everything to the right will be the right vector.
@@ -76,6 +85,7 @@
 			
 
 			<p>
+				TODO: add explanation to why the runtime dropped
 				As mentioned in the spec, the ray intersection complexity runs in O(N) time. By adding the BVH acceleration, the complexity drops to O(logN) time.
 				We rendered the Cow, Max Planck, and CBlucy without the BH acceleration in 18.0905s, 173.4054s, and 531.0499s, respectively. With the BVH acceleration, 
 				we were able to render the Cow, Max Planck, and CBlucy in 0.0596s, 0.0721s, and 0.0623s, respectively. 
