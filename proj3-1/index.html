@@ -7,16 +7,15 @@
         <h2>Overview</h2>
 		<h2>Part 1</h2>
 		<p>
-			TODO: 
-			(x, y) passed in is image coordinates.
-			Write out the matrix; it is translate then scale.
-			Set z = -1
-			We used cw and pos to change coordinate system. pos is camera position in world space (this part is translation). 
-		
-			To generate the ray, we took the (x,y) coordinates that were passed in the world space, and transformed it into the camera space by 
-			generating a 3x3 matrix called , vecotorizing our input, and multiplying the matrix by the vector.
-			In camera space, we generated our ray, and then we used the cw matrix to transform the ray from camera space back to world space, and then we normalized 
-			the ray and set its min_t and max_t values to nClip and fClip respectively.
+			To generate the ray, we took the (x,y) coordinates that were passed in the image coordinates, and transformed it into the camera coordinates by 
+			generating a 3x3 matrix called image_to_camera, vecotorizing our input, and multiplying the matrix by the vector.
+			The 3x3 matrix image_to_camera contains the following elements {2*hdiff, 0, -hdiff, 0, 2*vdiff, -vdiff, 0, 0, 1} in row-major form where hdiff = tan(radians(hFov) / 2) and vdiff = tan(radians(vFov) / 2).
+			This matrix allows us to do a scale and translation to convert the image coordinates to camera coordinates.
+			Since the image coordinates is a 2x1 vector, we need to add an extra coordinate; for this, we simply set the z coordinate of the vector to 1 before doing the matrix-vector multiplication to get a vector called camera_space.
+			In camera space, we first took the camera_space vector we generated and set the z coordinate to -1, since the spec says the virtual camera sensor lies on z = -1.
+			We then generated our ray, and then we used the cw matrix to help transform the ray from camera space to world space: {c2w(0,0), c2w(0,1), c2w(0,2), pos.x, c2w(1,0), c2w(1,1), c2w(1,2), pos.y, c2w(2,0), c2w(2,1), c2w(2,2), pos.z, 0, 0, 0, 1}.
+			The c2w matrix helps us convert from the camera coordinate system to the world coordinate system while pos is the camera position in the world space, and is used to translate our ray.
+			Finally, after translating the ray from camera space to world space, we will normalize our ray and set the ray's min_t to the nClip and the max_t to fClip.
 
 			<br>
 			<br>
@@ -61,7 +60,6 @@
 
 			<h3> Case 2: The number of primitives is greater than max_leaf_size </h3>
 			<p>
-				TODO: the special case that you fixed.
 				In this case, we need to recurse.
 				We first find a split point by taking the centroids of all the primitives that we added up previously and dividing it by the number of primitives to get the average.
 				Afterwards, we found the largest extent of the bounding box for all three axes (x,y, and z), which we will use to compare with coordinates of primitives later.
