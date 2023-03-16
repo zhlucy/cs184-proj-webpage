@@ -12,11 +12,16 @@
 		<p>
 			To generate the ray, we took the (x,y) coordinates that were passed in the image coordinates, and transformed it into the camera coordinates by 
 			generating a 3x3 matrix called image_to_camera, vecotorizing our input, and multiplying the matrix by the vector.
-			The 3x3 matrix image_to_camera contains the following elements {2*hdiff, 0, -hdiff, 0, 2*vdiff, -vdiff, 0, 0, 1} in row-major form where hdiff = tan(radians(hFov) / 2) and vdiff = tan(radians(vFov) / 2).
+			The 3x3 matrix image_to_camera contains the following elements
+			<img src="writeup_img/part1_3x3.png" width="25%">
+			<br>
+			in row-major form where hdiff = tan(radians(hFov) / 2) and vdiff = tan(radians(vFov) / 2).
 			This matrix allows us to do a scale and translation to convert the image coordinates to camera coordinates.
 			Since the image coordinates is a 2x1 vector, we need to add an extra coordinate; for this, we simply set the z coordinate of the vector to 1 before doing the matrix-vector multiplication to get a vector called camera_space.
 			In camera space, we first took the camera_space vector we generated and set the z coordinate to -1, since the spec says the virtual camera sensor lies on z = -1.
-			We then generated our ray, and then we used the cw matrix to help transform the ray from camera space to world space: {c2w(0,0), c2w(0,1), c2w(0,2), pos.x, c2w(1,0), c2w(1,1), c2w(1,2), pos.y, c2w(2,0), c2w(2,1), c2w(2,2), pos.z, 0, 0, 0, 1}.
+			We then generated our ray, and then we used the cw matrix to help transform the ray from camera space to world space:
+			<img src="writeup_img/part1_4x4.png" width="25%">
+			<br>
 			The c2w matrix helps us convert from the camera coordinate system to the world coordinate system while pos is the camera position in the world space, and is used to translate our ray.
 			Finally, after translating the ray from camera space to world space, we will normalize our ray and set the ray's min_t to the nClip and the max_t to fClip.
 
@@ -251,7 +256,8 @@
 				Rendered Image of Wall-e
 			</p>
 			<img src="writeup_img/part_5_walle.png" width="75%">
-			
+			<br>
+			<br>
 
 		Link: https://zhlucy.github.io/cs184-proj-webpage/proj3/index.html
 	</body>
