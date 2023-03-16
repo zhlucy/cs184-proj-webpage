@@ -19,13 +19,23 @@
 
 			<br>
 			<br>
-
-			TODO: Can you be more descriptive for everything? For example, how we normalized the vectors?
-			You need to take the sum of radiance and then normalize it at the end before updating sampleBuffer.
-			
-			To generate the pixel samples, we generated `num_samples` random rays by using randomly generated (x,y) coordinates, created normalized vectors, and then 
-			used the generate_ray to generate our ray. After generating the ray, we called est_radiance_global_illumination to estimate the scene radiance along that ray and then 
-			updated the sampleBuffer accordingly.
+			To generate the pixel samples we do the following:
+			<br>
+			1: Initialize a vector called sum that will keep track of the sum radiance of all the rays.
+			<br>
+			2: We will generate ns_aa random rays by doing a loop. Inside the loop we do the following:
+			<br>
+			3: Generate a random ray by calling the get_sample method and then adding this vector to the origin vector to get a vector called image_coord.
+			<br>
+			4: Normalize this vector by dividing the image_coord.x and image_coord.y (the x and y coordinates) by sampleBuffer.w and sampleBuffer.h respectively.
+			<br>
+			5: Generate the ray using the generate_ray function that we implemented in task 1 with image_coord.x and image_coord.y as its two arguments.
+			<br>
+			6: We then initialize the depth of ray by setting r.depth = max_ray_depth and then estimate the scene radiance along that ray by calling the est_radiance_global_illumination function.
+			<br>
+			7: est_radiance_global_illumination will return a radiance vector, and we will ad this radiance to the sum vector that we initialized.
+			<br>
+			8: After generating ns_aa rays, update the sample buffer by normalizing the sum vector and then calling update_pixel by passing in the this normalized vector along with the x and y coordiantes that were passed in. 
 
 			<br>
 			<br>
@@ -86,7 +96,8 @@
 				TODO: add explanation to why the runtime dropped
 				As mentioned in the spec, the ray intersection complexity runs in O(N) time. By adding the BVH acceleration, the complexity drops to O(logN) time.
 				We rendered the Cow, Max Planck, and CBlucy without the BH acceleration in 18.0905s, 173.4054s, and 531.0499s, respectively. With the BVH acceleration, 
-				we were able to render the Cow, Max Planck, and CBlucy in 0.0596s, 0.0721s, and 0.0623s, respectively. 
+				we were able to render the Cow, Max Planck, and CBlucy in 0.0596s, 0.0721s, and 0.0623s, respectively. Previously, the runtime was O(N) because we used a naive solution where we had to iterate through all the primitives and had to do an intersection check on each primiitve. 
+				With BVH acceleration, our runtime goes down to O(logN) because we don't need to check through every single primitive to see if an intersection occurred. We only need to check for intersections at the leaf nodes, and going from the root of the tree to the leaf node take O(logN) time.
 			</p>
 		</p>
 
@@ -218,10 +229,26 @@
 				<br>
 				Lastly, we take the sum of radiance calculated in the loop and normalize it by sample_count before updating the sampleBuffer. 
 			</p>
-			<img src="writeup_img/part5_banana.png" width="75%">
+			<p>
+				The following images were rendered with 2048 samples, 1 light ray, 5 max depth, and a maxTolerance of 0.05.
+			</p>
+			<p>
+				Sample Rate of the Banana
+			</p>
 			<img src="writeup_img/part5_banana_heatmap.png" width="75%">
-			<img src="writeup_img/part_5_walle.png" width="75%">
+			<p>
+				Rendered Image of the Banana
+			</p>
+			<img src="writeup_img/part5_banana.png" width="75%">
+			<p>
+				Sample Rate of Wall-e
+			</p>
 			<img src="writeup_img/part5_walle_heatmap.png" width="75%">
+			<p>
+				Rendered Image of Wall-e
+			</p>
+			<img src="writeup_img/part_5_walle.png" width="75%">
+			
 
 		Link: https://zhlucy.github.io/cs184-proj-webpage/proj3/index.html
 	</body>
