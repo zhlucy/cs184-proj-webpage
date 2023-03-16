@@ -14,7 +14,7 @@
 			We used cw and pos to change coordinate system. pos is camera position in world space (this part is translation). 
 		
 			To generate the ray, we took the (x,y) coordinates that were passed in the world space, and transformed it into the camera space by 
-			generating a 3x3 matrix, vecotorizing our input, and multiplying the matrix by the vector.
+			generating a 3x3 matrix called , vecotorizing our input, and multiplying the matrix by the vector.
 			In camera space, we generated our ray, and then we used the cw matrix to transform the ray from camera space back to world space, and then we normalized 
 			the ray and set its min_t and max_t values to nClip and fClip respectively.
 
@@ -195,11 +195,27 @@
 				1: We check to see if I &lt= maxTolerance * mean where I = 1.96 * std / (square root of n) 
 				where mean is the mean of the n samples that we've collected so far and the std is the standard deviation of the n samples we've collected so far.
 				The maxTolerance is a parameter that we pass in, but it is typically set to 0.05.
-				If I &lt= maxTolerance * mean and sample_count &lt num_samples, we will continue on with the following loop:
+				If I &gt maxTolerance * mean and sample_count &lt num_samples, we will continue on with the following loop:
 				<br>
-				2: 
-				 
-
+				2: We will initialize i to 0 and run the inner loop if i &lt samplesPerBatch and sample_count &lt num_samples (where sample_count is initialied to 0 outside the inner loop and num_samples = ns_aa), incrementing i by one after each iteration.
+				<br>
+				3: We will generate a random sample, normalize the vector, and generate a ray based on this sample. We will then estimate the scene radiance along the ray using the est_radiance_global_illumination function. 
+				<br>
+				4: Afterwards, we find the illuminance of the radiance, and we will update s1 and s0 (which were both initialized to 0 outside the outer loop) using the formula on the spec:
+				<br>
+				s1 = sum from k = 1 to n(x_k) where x_k is the sample's illuminance
+				<br>
+				s2 = sum from k = 1 to n(x_k ^ 2) where x_k is the sample's illuminance
+				<br>
+				5: The last thing in the inner loop is to increment sample_count by 1
+				<br>
+				6: Continuing from the outer loop, we will recalculate the mean, std, and I using the formula on the website:
+				<br>
+				mean = s1 / sample_count
+				<br>
+				std = square root of (1 / (n-1) * (s2 - s1 ^ 2/n))
+				<br>
+				I = 1.96 * std / square root(sample_count)
 			</p>
 			<img src="writeup_img/part5_banana.png" width="75%">
 			<img src="writeup_img/part5_banana_heatmap.png" width="75%">
