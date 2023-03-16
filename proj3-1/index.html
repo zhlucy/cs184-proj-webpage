@@ -60,12 +60,19 @@
 				Then, we will get the centroid of the Primitive and get the coordinate for whichever axis has the highest extend (for example, if the x axis had the highest extent, we will choose the x coordinate of the centroid of the Primitive).
 				If the coordinate is less than the coordinate of the split point, we will add this Primitive to the left vector; otherwise, we add it to the right vector.
 				At the end of the iteration, we should've put all Primitives that have a coordinate less than the split point in the left vector and all the Primitives that have a coordinate more than the split point in the right vector.
+				Within this case, we also addressed the edge case where all Primitives end up in one vector. In this case, we will use the middle of the vector and everything to the left will be the left vector and everything to the right will be the right vector.
 				From here we will recurse. We will call construct_bvh and pass in the start and end iterators using the left vector and assign the returned Node to <code>node->l</code>. We will do the same for the right vector and assign the returned Node to <code> node->r </code>.
 			</p>
 
 			<img src="writeup_img/part2_cow.png" width="75%">
+			<br>
+			<br>
 			<img src="writeup_img/part2_maxplanck.png" width="75%">
+			<br>
+			<br>
 			<img src="writeup_img/part2_cblucy.png" width="75%">
+			<br>
+			<br>
 			
 
 			<p>
@@ -165,6 +172,29 @@
 			<p> This image is rendered with 1024 samples per pixel.</p>
 			<img src="writeup_img/part4_1024.png" width="75%">
 			<p>As the number of samples increases, the image becomes significantly less noisy/blurry. With more samples, we can render more realistic image with more accurate lighting.</p>
+
+			<h2>Part 5</h2>
+			<p>
+				In this part, we implemented adaptive sampling. After implementing Monte Carlo path tracing, our images look a lot more realistic.
+				However, one of the problems we run into is that the images have a lot of noise.
+				In order to mitigate these issues, we implemented adaptive sampline. In adaptive sampling, we check to see if the pixel has converged within some confidence interval; if it has converged, then we 
+				don't need to sample the pixel anymore.
+				<br>
+				These are the following steps we took to implement adaptive sampling:
+				<br>
+				1: We check to see if I &lt= maxTolerance * mean where I = 1.96 * std / (square root of n) 
+				where mean is the mean of the n samples that we've collected so far and the std is the standard deviation of the n samples we've collected so far.
+				The maxTolerance is a parameter that we pass in, but it is typically set to 0.05.
+				If I &lt= maxTolerance * mean and sample_count &lt num_samples, we will continue on with the following loop:
+				<br>
+				2: 
+				 
+
+			</p>
+			<img src="writeup_img/part5_banana.png" width="75%">
+			<img src="writeup_img/part5_banana_heatmap.png" width="75%">
+			<img src="writeup_img/part_5_walle.png" width="75%">
+			<img src="writeup_img/part5_walle_heatmap.png" width="75%">
 
 		Link: https://zhlucy.github.io/cs184-proj-webpage/proj3/index.html
 	</body>
