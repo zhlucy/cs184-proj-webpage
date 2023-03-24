@@ -15,10 +15,16 @@
 			max_ray_depth set to 0
 			<br>
 			<br>
+			When max_ray_depth is equal to 0, there are no light rays bouncing off, so we can only see the light source, and we cannot see the spheres. 
+			<br>
+			<br>
 			<img src="writeup_img/part1_0.png" width="50%">
 			<br>
 			<br>
 			max_ray_depth set to 1
+			<br>
+			<br>
+			When max_ray_depth is equal to 1, the walls are lit up and we can see the outlines of both spheres. There aren't enough bounces for the mirrored sphere to reflect the objects that surround it or for the refracted sphere to illuminate. 
 			<br>
 			<br>
 			<img src="writeup_img/part1_1.png" width="50%">
@@ -27,10 +33,16 @@
 			max_ray_depth set to 2
 			<br>
 			<br>
+			When max_ray_depth is equal to 2, we can see the walls and the mirrored sphere. The mirrored sphere reflects the walls and the refracted ball, but it is still pretty dark. The mirrored sphere also doesn’t reflect the top gray wall, as there aren’t enough light bounces for it to reflect the top wall. The mirror sphere also reflects its own shadow that is cast from the light source. The refracted sphere is starting to illuminate, but it is not completely illuminated because there aren’t enough bounces to fully illuminate it; there are some light rays that enter the refracted sphere, but there doesn’t seem to be a lot of light rays that exit the sphere. At max_ray_depth of 2, we can also start seeing the shadows that form underneath the two spheres, but the shadows appear to be darker than normal.
+			<br>
+			<br>
 			<img src="writeup_img/part1_2.png" width="50%">
 			<br>
 			<br>
 			max_ray_depth set to 3
+			<br>
+			<br>
+			When max_ray_depth is equal to 3, the refracted sphere is finally illuminated. The shadow underneath the refracted sphere also has a lit up circular shape inside it. At 3 bounces, the light source was able to refract through the refracted sphere, which causes this circular light. The mirrored sphere looks the same as in part 2, except the shadow underneath the sphere is a lot lighter. An increase in bounces allowed more light to bounce around, which caused the shadows to become lighter. The reflection of the sphere inside the mirror sphere is still really dark, which is caused by the fact that at 3 bounces, there aren’t enough bounces for the mirrored sphere to reflect the sphere.
 			<br>
 			<br>
 			<img src="writeup_img/part1_3.png" width="50%">
@@ -39,10 +51,16 @@
 			max_ray_depth set to 4
 			<br>
 			<br>
+			When max_ray_depth is equal to 4, the mirror sphere is finally able to reflect the refracted sphere. The reflection of the sphere inside the mirror sphere is blue because the ray bounces off the wall to the refracted sphere then to the mirrored sphere. Because the mirrored sphere is to the left of the refracted sphere, it will only see the blue refracted wall from its perspective. At max_ray_depth of 4, the shadows underneath the mirrored sphere seems even lighter, as an increase in light bounces allows the shadows to be more light. On the bottom right side of the right blue wall, we can also see a small speck of light; this light appears because after 4 bounces, there is enough light to bounce around and refract back into the sphere and appear on the other side. In the past, we only saw the refracted light from the light source, but now, we see this speck because of light that bounced around and entered the refracted sphere at a different angle.
+			<br>
+			<br>
 			<img src="writeup_img/part1_4.png" width="50%">
 			<br>
 			<br>
 			max_ray_depth set to 5
+			<br>
+			<br>
+			At max_ray_depth 5 and 100, there doesn’t appear to be a huge difference between these images with that when the max_ray_depth was 4. There doesn’t need to be many ray bounces to render a good image because the scene is simple.
 			<br>
 			<br>
 			<img src="writeup_img/part1_5.png" width="50%">
@@ -54,11 +72,7 @@
 			<img src="writeup_img/part1_100.png" width="50%">
 			<br>
 			<br>
-		</p>
-		<p>
-			When max_ray_depth is equal to 0, there is no light rays bouncing off, so we can only see the light source, and we cannot see the spheres.
-			When max_ray_depth is equal to 1, we can see that the walls and the outlines of the sphere.
-			When max_ray_depth is equal to 2, 
+
 		</p>
 		<h2>
 			Part 4
