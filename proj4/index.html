@@ -1,7 +1,122 @@
 <html>
 	<head>
+		<title>
+			CS 184 Project 4 Write-Up
+		</title>
 	</head>
 	<body>
-		Project 4 here
+		<h1>CS 184 Project 4 Write-Up</h1>
+		<h2>Overview </h2>
+		<p>
+			
+		</p>
+		<h2>
+			Part 1
+		</h2>
+		<p>
+			Closeup view of wireframe. 
+		</p>
+		<img src="writeup_img/part1_closeup_view.png" width="50%">
+		<p>
+			Wireframe without any shearing constraints
+		</p>
+		<img src="writeup_img/part1_without_shearing.png" width="50%">
+		<p>
+			Wireframe with only shearing constraints
+		</p>
+		<img src="writeup_img/part1_only_shearing.png" width="50%">
+		<p>
+			Wireframe with all constraints
+		</p>
+		<img src="writeup_img/part1_all_constraints.png" width="50%">
+
+		<h2>
+			Part 2
+		</h2>
+		<p>
+			The default parameters are <code> density = 15 g/cm^2, ks = 5000 N/m, and damping = 0.2% </code>
+			<br>
+			This is what the cloth looks like with these default parameters.
+		</p>
+		<img src="writeup_img/part2_default.png" width="50%">
+
+		<p>
+			Cloth with <code> ks = 1 </code>
+		</p>
+		<img src="writeup_img/part2_ks_1.png" width="50%">
+		
+		<p>
+			Cloth with <code> ks = 100 </code>
+		</p>
+		<img src="writeup_img/part_2_ks_100.png" width="50%">
+		<p>
+			Cloth with <code> ks = 500 </code>
+		</p>
+		<img src="writeup_img/part2_ks_500.png" width="50%">
+		<p>
+			Cloth with <code> ks = 5000 </code>
+		</p>
+		<img src="writeup_img/part2_ks_5000.png" width="50%">
+		<p>
+			With <code>density</code> and <code>damping</code> held constant, we can see that as we increase <code>ks</code>, the cloth becomes more stiffer.
+			When <code>ks</code> is low, the cloth appears to jiggle more frequently at its rest state; at higher <code>ks</code>, the rest state of the cloth becomes stiffer and less jiggly. 
+		</p>
+
+		<p>
+			Cloth with <code> density = 1</code>
+		</p>
+		<img src="writeup_img/part2_density_1.png" width="50%">
+		<p>
+			Cloth with <code> density = 5</code>
+		</p>
+		<img src="writeup_img/part2_density_5.png" width="50%">
+		<p>
+			Cloth with <code> density = 10</code>
+		</p>
+		<img src="writeup_img/part2_density_10.png" width="50%">
+		<p>
+			Cloth with <code> density = 50</code>
+		</p>
+		<img src="writeup_img/part2_density_50.png" width="50%">
+		<p>
+			Cloth with <code> density = 100</code>
+		</p>
+		<img src="writeup_img/part2_density_100.png" width="50%">
+		<p>
+			With <code>ks</code> and <code>damping</code> held constant, we can see that as the density increases, the u-shaped dip on the top of the cloth dips even more.
+			At rest state, this u-shaped dip appears to have a smaller dip at low densities while at high densities, the shape dips down further into the cloth.
+		</p>
+
+		<p>
+			Cloth with <code>damping = 0</code>
+		</p>
+		<img src="writeup_img/part2_damping_0.png" width="50%">
+		<p>
+			Cloth with <code>damping = 0.05</code>
+		</p>
+		<img src="writeup_img/part2_damping_0.05.png" width="50%">
+		<p>
+			Cloth with <code>damping = 0.1</code>
+		</p>
+		<img src="writeup_img/part2_damping_0.1.png" width="50%">
+		<p>
+			Cloth with <code>damping = 0</code>
+		</p>
+		<img src="writeup_img/part2_damping_1.png" width="50%">
+		<p>
+			When <code>ks</code> and <code>density</code> are held constant, a low <code>damping</code>> percentage results in the cloth moving more freely.
+			In the picture where <code>damping=0</code>, we can see the cloth is in the middle of "sloshing". Furthermore, when the <code>damping</code>> percentage is lower, the cloth seems to be dropping closewr to free fall.
+			In compairson, increasing the <code>damping</code> parameter makes the cloth slosh less, and causes the cloth to get to its rest position slower; the cloth drops to its rest position slowly.
+		</p>
+		<p>
+			Shaded cloth in its final resting state with default parameters
+		</p>
+		<img src="writeup_img/part2_shaded_cloth.png" width="50%">
+		<h2>
+			Part 3
+		</h2>
+		<p>
+
+		</p>
 	</body>
 </html>
