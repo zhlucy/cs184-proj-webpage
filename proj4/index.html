@@ -104,7 +104,7 @@
 		</p>
 		<img src="writeup_img/part2_damping_1.png" width="50%">
 		<p>
-			When <code>ks</code> and <code>density</code> are held constant, a low <code>damping</code>> percentage results in the cloth moving more freely.
+			When <code>ks</code> and <code>density</code> are held constant, a low <code>damping</code> percentage results in the cloth moving more freely.
 			In the picture where <code>damping=0</code>, we can see the cloth is in the middle of "sloshing". Furthermore, when the <code>damping</code>> percentage is lower, the cloth seems to be dropping closewr to free fall.
 			In compairson, increasing the <code>damping</code> parameter makes the cloth slosh less, and causes the cloth to get to its rest position slower; the cloth drops to its rest position slowly.
 		</p>
@@ -114,6 +114,31 @@
 		<img src="writeup_img/part2_shaded_cloth.png" width="50%">
 		<h2>
 			Part 3
+		</h2>
+		<p>
+			Cloth with <code>ks = 5000</code>
+		</p>
+		<img src="writeup_img/part3_ks_5000.png" width="50%">
+		<p>
+			Cloth with <code>ks = 500</code>
+		</p>
+		<img src="writeup_img/part3_ks_500.png" width="50%">
+		<p>
+			Cloth with <code>ks = 50000</code>
+		</p>
+		<img src="writeup_img/part3_ks_50000.png" width="50%">
+		<p>
+			At a lower <code>ks</code>, we can see that the cloth is wrapping the sphere a lot more tightly than when <code>ks</code> is high.
+			This is related to the effect that we saw in Part 2; a lower spring constant allows the the cloth to be free and thus more "jiggly". 
+			Similarly, in this case, a lower spring constant allows the cloth to wrap around the sphere more tightly.
+			On the other hand, a higher spring constant restricts the movement of the cloth, which is why the cloth doesn't wrap itself around the sphere because the higher spring constant restricts the cloth.
+		</p>
+		<p>
+			Shaded Cloth Lying Peacefully at Rest on the Plane
+		</p>
+		<img src="writeup_img/part3_lazy_cloth.png" width="50%">
+		<h2>
+			Part 4
 		</h2>
 		<p>
 
