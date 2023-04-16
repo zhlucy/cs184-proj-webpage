@@ -182,6 +182,32 @@
 			On the other hand, at higher densities, the cloth seems to crumple up a lot more and the size of each fold seems to be smaller. At <code>density = 200</code>, the size of each fold is smaller, there are more folds, and the cloth that hasn't been folded yet is already crumpled up.
 		</p>
 
-		
+		<p>
+			Cloth falling with <code>ks = 1</code>
+		</p>
+		<img src="writeup_img/part4_ks_1.png" width="50%">
+		<p>
+			Cloth falling with <code>ks = 500</code>
+		</p>
+		<img src="writeup_img/part4_ks_500.png" width="50%">
+		<p>
+			Cloth falling with <code>ks = 5000</code>
+		</p>
+		<img src="writeup_img/part4_ks_5000.png" width="50%">
+		<p>
+			Cloth falling with <code>ks = 10000</code>
+		</p>
+		<img src="writeup_img/part4_ks_10000.png" width="50%">
+		<p>
+			Cloth falling with <code>ks = 100000</code>
+		</p>
+		<img src="writeup_img/part4_ks_100000.png" width="50%">
+		<p>
+			When <code>ks</code> is lower, the cloth seems to be more crumpled up at rest state than when the <code>ks</code> is higher.
+			When <code>ks = 1</code>, we can see that the cloth is really crumpled up at its rest state.
+			In contrast, a higher <code>ks</code> results in a smoother cloth at rest state.
+			This is probably due to the fact that a higher <code>ks</code> means a higher spring constant, so the springs are stiffer, meaning a higher <code>ks</code> would mean the springs have less displacement. 
+			When <code>ks</code> is lower, the springs have a higher displacement, meaning the cloth is prone to crumple more in its rest state.
+		</p>
 	</body>
 </html>
