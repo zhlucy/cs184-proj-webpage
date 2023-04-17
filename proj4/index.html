@@ -112,6 +112,7 @@
 			Shaded cloth in its final resting state with default parameters
 		</p>
 		<img src="writeup_img/part2_shaded_cloth.png" width="50%">
+		
 		<h2>
 			Part 3
 		</h2>
@@ -137,6 +138,7 @@
 			Shaded Cloth Lying Peacefully at Rest on the Plane
 		</p>
 		<img src="writeup_img/part3_lazy_cloth.png" width="50%">
+		
 		<h2>
 			Part 4
 		</h2>
@@ -208,6 +210,16 @@
 			In contrast, a higher <code>ks</code> results in a smoother cloth at rest state.
 			This is probably due to the fact that a higher <code>ks</code> means a higher spring constant, so the springs are stiffer, meaning a higher <code>ks</code> would mean the springs have less displacement. 
 			When <code>ks</code> is lower, the springs have a higher displacement, meaning the cloth is prone to crumple more in its rest state.
+		</p>
+
+		<h2>
+			Part 5
+		</h2>
+		<p> 
+			Shader program runs on the GPU and generates the final image with lighting and material effects. Vertex shaders are responsible for processing the geometry of 3D models. They take in information about the position, orientation, and scale of each vertex of a 3D model, and they use this information to transform the vertices into their final positions on the screen. On the other hand, fragment shaders are responsible for processing the fragments calculated by the vertex shader. They take in information about the position, color, and texture of each pixel, and they use this information to calculate the final color of the pixel. 
+		</p>
+		<p>
+			The Blinn-Phong model uses a combination of ambient, diffuse, and specular lighting to create a more realistic lighting effect on the object. Ambient light is the general illumination that is present everywhere in the scene. Diffuse light is the light that is scattered in all directions when it hits a rough surface. Specular light is the light that is reflected in a specific direction when it hits a shiny surface. Each of these are calculated using the formulas given in lecture with surface normal, view direction, and light direction.
 		</p>
 	</body>
 </html>
