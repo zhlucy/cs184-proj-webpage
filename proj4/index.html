@@ -284,9 +284,10 @@
 		<img src="writeup_img/part5_displacement_128.png" width="50%">
 
 		<p>
-			The main difference between the bump mapping and displacement mapping is that the displacement mapping changes the way the sphere and the cloth are morphed.
-			In the figures above, one can see that for both the 16 by 16 resolution and the 128 by 128 resolution, the displacement mapping morphs the way the cloth and the sphere are shaped.
-			On the other hand, the bump mapping doesn't change the overall shape of the cloth and the sphere. One can see that the sphere doesn't change shape and the cloth still maintains its rectangular form.
+			The main difference between the bump mapping and displacement mapping is that the displacement mapping changes the way the sphere and the cloth are shaped.
+			In the figures above, one can see that for both the 16 by 16 resolution and the 128 by 128 resolution, the displacement mapping morphs the way the cloth and the sphere are shaped. The cloth no longer looks like its original rectangular shape and the sphere no longer looks like its spherical shape; the displacement mapping changes the geometry of the original shape.
+			On the other hand, the bump mapping doesn't change the overall shape of the cloth and the sphere; the geometry of the shapes don't change. One can see that the sphere doesn't change shape and the cloth still maintains its rectangular form.
+			The displacement mapping perturbs the positions while the bump mapping perturbs the surface normals.
 		</p>
 
 		<p>
